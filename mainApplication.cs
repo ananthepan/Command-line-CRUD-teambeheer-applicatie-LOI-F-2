@@ -51,7 +51,7 @@ class Program
         }
     }
 
-    // ---------- Input helpers ----------
+    // Input helpers 
 
     static int ReadNumber(string prompt)
     {
@@ -135,8 +135,7 @@ class Program
         }
     }
 
-    // ---------- View ----------
-
+    // view
     static void ViewTeams()
     {
         Console.WriteLine("Teams");
@@ -157,7 +156,7 @@ class Program
         Pause();
     }
 
-    // ---------- Manage teams ----------
+    // Manage teams
 
     static void ManageTeams()
     {
@@ -208,19 +207,74 @@ class Program
     static void AddTeam()
     {
         // TODO: naam en stad vragen, new Team(...), teams.Add(...), Pause()
+        string name = ReadText("Naam van het team: ");
+        string city = ReadText("Naam van de stad: ");
+        teams.Add(new Team(name, city));
+        Console.WriteLine("Team toegevoegd");
+        Pause();
     }
 
     static void EditTeam()
     {
-        // TODO: lijst tonen, Id vragen, team zoeken, nieuwe naam en stad invullen
+        if (teams.Count == 0 )
+        {
+            Console.WriteLine("Er zijn geen teams om te bewerken");
+            Pause();
+            return;
+        }
+
+        ShowTeams();
+            int id = ReadNumber("Id van het team: ");
+            Team found = teams.Find(t => t.Id == id);
+
+
+        if (found == null )
+        {
+            Console.WriteLine("Dat team bestaat niet.");
+            Pause();
+            return;
+        }
+            string name = ReadText("Voer teamnaam in: ");
+            string city = ReadText("Voer stadsnaam in: ");
+
+            found.Name = name;
+            found.Stad = city;
+
+            Console.WriteLine("Team aangepast.");
+            Pause();
+        
+
     }
 
     static void DeleteTeam()
     {
         // TODO: lijst tonen, Id vragen, team zoeken, verwijderen
+
+        if (teams.Count == 0 )
+        {
+            Console.WriteLine("Er zijn geen teams om te verwijderen");
+            Pause();
+            return;
+        }
+
+        ShowTeams();
+            int id = ReadNumber("Id van het team: ");
+            Team found = teams.Find(t => t.Id == id);
+
+        if (found == null)
+        {
+            Console.WriteLine("Dat team bestaat niet.");
+        }
+        else
+        {
+            teams.Remove(found); 
+            Console.WriteLine("Team verwijderd.");
+        }
+
+        Pause();
     }
 
-    // ---------- Manage players ----------
+    // Manage players
 
     static void ManagePlayers()
     {
@@ -281,7 +335,18 @@ class Program
 
     static void AddPlayer()
     {
-        // TODO: naam, rugnummer, positie (1-4) vragen, new Speler(...), players.Add(...)
+        // TODO: naam, rugnummer, positie (1-4) vragen, new Speler(...), players.Add(...)        string name = ReadText("Naam van het team: ");
+        //string name = ReadText("Naam van de speler: ");
+        //string number = ReadNumber("Rugnummer van de speler: ");
+
+        //string position = ReadNumber("Welke positie heeft de speler");
+        //Console.WriteLine("1. keeper, 2. verdediger, 3. middenvelder, 4. aanvaller.");
+
+
+
+        //teams.Add(new Team(name, city));
+        //Console.WriteLine("Team toegevoegd");
+        //Pause();
     }
 
     static void EditPlayer()
