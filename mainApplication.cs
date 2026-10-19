@@ -40,9 +40,16 @@ class Program
                     ManagePlayers();
                     break;
                 case 5:
-                    Console.WriteLine("Applicatie afgesloten");
-                    running = false;
+                    Console.WriteLine("Weet u zeker dat u wilt afsluiten? (j/n)");
+                    char answer = Console.ReadKey(true).KeyChar;
+
+                    if (answer == 'j' || answer == 'J')
+                    {
+                        Console.WriteLine("Applicatie afgesloten.");
+                        running = false;
+                    }
                     break;
+
                 default:
                     Console.WriteLine("Ongeldige keuze, probeer het opnieuw.");
                     Pause();
@@ -51,7 +58,7 @@ class Program
         }
     }
 
-    // Input helpers 
+    // Input  
 
     static int ReadNumber(string prompt)
     {
@@ -65,7 +72,7 @@ class Program
                 return number;
             }
 
-            Console.WriteLine("Ongeldige invoer, typ een getal.");
+            Console.WriteLine("Ongeldige invoer, typ een getal in.");
         }
     }
 
@@ -93,9 +100,27 @@ class Program
         if (char.IsDigit(key))
         {
             return key - '0';
-
         }
         return -1;
+    }
+
+    static Positie ReadPosition()
+    {
+        Console.WriteLine("1. keeper, 2. verdediger, 3. middenvelder, 4. aanvaller");
+
+        while (true)
+        {
+            int number = ReadMenuChoice("Welke positie heeft de speler (1-4): ");
+
+            if (number >= 1 && number <= 4)
+            {
+                Console.WriteLine(number);
+                return (Positie)(number - 1);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Deze invoer wordt niet herkend, kies een getal van 1 tot en met 4.");
+        }
     }
 
     //Display helpers
@@ -118,6 +143,16 @@ class Program
         foreach (Team team in teams)
         {
             Console.WriteLine(team.Id + ". " + team.Name + " (" + team.Stad + ")");
+
+            if (team.Spelers.Count == 0)
+            {
+                Console.WriteLine("    geen spelers");
+            }
+
+            foreach (Speler s in team.Spelers)
+            {
+                Console.WriteLine("    speler: " + s.Name + " - nr " + s.Rugnummer + " - " + s.Positie);
+            }
         }
     }
 
@@ -172,8 +207,6 @@ class Program
             Console.Clear();
             Console.WriteLine("Teams beheren");
             Console.WriteLine("Wat wilt u doen?");
-            //funtion, class smth for displaying number (number , nuber actis assigned automatically evertime a new object has been created) for team so the number can be clicked and the selected team is displayed the folllowing options for.
-            //selcted key = according team number. for selected key, team is selected and the following menu is displayed.
 
             Console.WriteLine("1. Teams bekijken");
             Console.WriteLine("2. Team toevoegen");
@@ -222,7 +255,7 @@ class Program
     {
         if (teams.Count == 0)
         {
-            Console.WriteLine("Er zijn geen teams om te bewerken");
+            Console.WriteLine("Er zijn geen teams om te bewerken.");
             Pause();
             return;
         }
@@ -231,15 +264,14 @@ class Program
         int id = ReadNumber("Id van het team: ");
         Team found = teams.Find(t => t.Id == id);
 
-
         if (found == null)
         {
             Console.WriteLine("Dat team bestaat niet.");
             Pause();
             return;
         }
-        string name = ReadText("Voer teamnaam in: ");
-        string city = ReadText("Voer stadsnaam in: ");
+        string name = ReadText("Nieuwe naam van het team: ");
+        string city = ReadText("Nieuwe naam van de stad: ");
 
         found.Name = name;
         found.Stad = city;
@@ -252,7 +284,7 @@ class Program
     {
         if (teams.Count == 0)
         {
-            Console.WriteLine("Er zijn geen teams om te verwijderen");
+            Console.WriteLine("Er zijn geen teams om te verwijderen.");
             Pause();
             return;
         }
@@ -289,14 +321,6 @@ class Program
             Console.Clear();
             Console.WriteLine("Spelers beheren");
             Console.WriteLine("Wat wilt u doen?");
-            // Console.WriteLine("Welke Speler wilt u aanpassen?");
-            // Console.WriteLine("Kies 1 -> speler toevoegen");
-            // Console.WriteLine("Kies 2 -> speler aanpassen");
-            // Console.WriteLine("Kies 3 -> speler verwijderen");
-
-            //add
-            //edit
-            //delete
 
             Console.WriteLine("1. Spelers bekijken");
             Console.WriteLine("2. Speler toevoegen");
@@ -342,16 +366,7 @@ class Program
         string name = ReadText("Naam van de speler: ");
         int jerseyNumber = ReadNumber("Rugnummer van de speler: ");
 
-        Console.WriteLine("1. keeper, 2. verdediger, 3. middenvelder, 4. aanvaller");
-        int positionNumber = ReadNumber("Welke positie heeft de speler (1-4): ");
-
-        while (positionNumber < 1 || positionNumber > 4)
-        {
-            Console.WriteLine("Deze invoer wordt niet herkend, kies een getal van 1 tot en met 4.");
-            positionNumber = ReadNumber("Welke positie heeft de speler (1-4): ");
-        }
-
-        Positie position = (Positie)(positionNumber - 1);
+        Positie position = ReadPosition();
 
         players.Add(new Speler(name, jerseyNumber, position));
         Console.WriteLine("Speler toegevoegd.");
@@ -378,21 +393,14 @@ class Program
             return;
         }
 
-        string name = ReadText("Voer de naam van de speler in: ");
-        int jerseyNumber = ReadNumber("Voer het rugnummer in: ");
+        string name = ReadText("Nieuwe naam van de speler: ");
+        int jerseyNumber = ReadNumber("Nieuw rugnummer van de speler: ");
 
-        Console.WriteLine("1. keeper, 2. verdediger, 3. middenvelder, 4. aanvaller");
-        int positionNumber = ReadNumber("Welke positie heeft de speler (1-4): ");
-
-        while (positionNumber < 1 || positionNumber > 4)
-        {
-            Console.WriteLine("Deze invoer wordt niet herkend, kies een getal van 1 tot en met 4.");
-            positionNumber = ReadNumber("Welke positie heeft de speler (1-4): ");
-        }
+        Positie position = ReadPosition();
 
         found.Name = name;
         found.Rugnummer = jerseyNumber;
-        found.Positie = (Positie)(positionNumber - 1);
+        found.Positie = position;
 
         Console.WriteLine("Speler aangepast.");
         Pause();
@@ -400,10 +408,9 @@ class Program
 
     static void DeletePlayer()
     {
-
         if (players.Count == 0)
         {
-            Console.WriteLine("Er zijn geen spelers om te verwijderen");
+            Console.WriteLine("Er zijn geen spelers om te verwijderen.");
             Pause();
             return;
         }
@@ -441,7 +448,7 @@ class Program
 
         if (players.Count == 0)
         {
-            Console.WriteLine("Er zijn nog geen spelers");
+            Console.WriteLine("Er zijn nog geen spelers.");
             Pause();
             return;
         }
@@ -486,13 +493,3 @@ class Program
         Pause();
     }
 }
-
-//voetbal teams worden getoond
-//spelers worden getoond na klikken van een team
-//team toevoegen
-//speler toevoegen
-//teams aanpassen(crud)
-//spelers aanpassen(crud)
-//opslaan, systeem onthoudt(zonder behulp van database)
-//exit loop
-//applicatie afsluiten
