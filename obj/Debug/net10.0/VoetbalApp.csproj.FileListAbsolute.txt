@@ -1,0 +1,15 @@
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/obj/Debug/net10.0/VoetbalApp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/obj/Debug/net10.0/VoetbalApp.AssemblyInfoInputs.cache
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/obj/Debug/net10.0/VoetbalApp.AssemblyInfo.cs
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/obj/Debug/net10.0/VoetbalApp.csproj.CoreCompileInputs.cache
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/obj/Debug/net10.0/VoetbalApp.sourcelink.json
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/bin/Debug/net10.0/VoetbalApp
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/bin/Debug/net10.0/VoetbalApp.deps.json
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/bin/Debug/net10.0/VoetbalApp.runtimeconfig.json
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/bin/Debug/net10.0/VoetbalApp.dll
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/bin/Debug/net10.0/VoetbalApp.pdb
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/obj/Debug/net10.0/VoetbalApp.dll
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/obj/Debug/net10.0/refint/VoetbalApp.dll
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/obj/Debug/net10.0/VoetbalApp.pdb
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/obj/Debug/net10.0/VoetbalApp.genruntimeconfig.cache
+/Users/spookycheese/Desktop/School LOI/C#/F2/Command line CRUD application/obj/Debug/net10.0/ref/VoetbalApp.dll
