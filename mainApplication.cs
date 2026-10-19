@@ -40,7 +40,7 @@ class Program
                     ManagePlayers();
                     break;
                 case 5:
-                    Console.WriteLine("Weet u zeker dat u wilt afsluiten? (j/n)");
+                    Console.WriteLine("Weet u zeker dat u de applicatie wilt afsluiten? (j/n)");
                     char answer = Console.ReadKey(true).KeyChar;
 
                     if (answer == 'j' || answer == 'J')
